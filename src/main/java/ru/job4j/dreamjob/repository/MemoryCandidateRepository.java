@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @Repository
 public class MemoryCandidateRepository implements CandidateRepository {
-    private static final MemoryCandidateRepository INSTANCE = new MemoryCandidateRepository();
 
     private int nextId = 1;
 
@@ -30,10 +29,6 @@ public class MemoryCandidateRepository implements CandidateRepository {
                 LocalDateTime.of(2018, 9, 23, 14, 22)));
         save(new Candidate(0, "Anton", "Experience is 5.5 years",
                 LocalDateTime.of(2018, 7, 4, 14, 22)));
-    }
-
-    public static CandidateRepository getInstance() {
-        return INSTANCE;
     }
 
     @Override
