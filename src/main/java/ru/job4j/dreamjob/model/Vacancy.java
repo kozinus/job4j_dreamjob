@@ -21,6 +21,7 @@ public class Vacancy {
     }
 
     public Vacancy() {
+        this.creationDate = LocalDateTime.now().withSecond(0).withNano(0);
     }
 
     public int getId() {

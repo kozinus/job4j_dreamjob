@@ -7,8 +7,6 @@ import ru.job4j.dreamjob.model.Vacancy;
 import ru.job4j.dreamjob.repository.MemoryVacancyRepository;
 import ru.job4j.dreamjob.repository.VacancyRepository;
 
-import java.time.LocalDateTime;
-
 @Controller
 @RequestMapping("/vacancies") /* Работать с кандидатами будем по URI /vacancies/** */
 public class VacancyController {
@@ -28,7 +26,6 @@ public class VacancyController {
 
     @PostMapping("/create")
     public String create(@ModelAttribute Vacancy vacancy) {
-        vacancy.setCreationDate(LocalDateTime.now().withSecond(0).withNano(0));
         vacancyRepository.save(vacancy);
         return "redirect:/vacancies";
     }
