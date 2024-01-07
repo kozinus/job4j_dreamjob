@@ -10,7 +10,7 @@ public class Candidate {
 
     private String description;
 
-    private LocalDateTime creationDate;
+    private LocalDateTime creationDate = LocalDateTime.now().withSecond(0).withNano(0);
 
     public Candidate(int id, String name, String description, LocalDateTime creationDate) {
         this.id = id;
@@ -20,7 +20,6 @@ public class Candidate {
     }
 
     public Candidate() {
-        this.creationDate = LocalDateTime.now().withSecond(0).withNano(0);
     }
 
     public int getId() {
