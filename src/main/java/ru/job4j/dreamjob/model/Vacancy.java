@@ -33,20 +33,20 @@ public class Vacancy {
     public Vacancy() {
     }
 
-    public int getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(int cityId) {
-        this.cityId = cityId;
-    }
-
     public boolean getVisible() {
         return visible;
     }
 
     public void setVisible(boolean visible) {
         this.visible = visible;
+    }
+
+    public int getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(int cityId) {
+        this.cityId = cityId;
     }
 
     public int getId() {
