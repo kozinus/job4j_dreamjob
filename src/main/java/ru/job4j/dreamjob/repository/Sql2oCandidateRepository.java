@@ -39,13 +39,13 @@ public class Sql2oCandidateRepository implements CandidateRepository {
 
     @Override
     public boolean deleteById(int id) {
-        boolean out;
+        int mod;
         try (var connection = sql2o.open()) {
             var query = connection.createQuery("DELETE FROM candidates WHERE id = :id");
             query.addParameter("id", id);
-            out = 1 == query.executeUpdate().getResult();
+            mod = query.executeUpdate().getResult();
         }
-        return out;
+        return mod > 0;
     }
 
     @Override
