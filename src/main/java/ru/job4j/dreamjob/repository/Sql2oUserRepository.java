@@ -1,5 +1,7 @@
 package ru.job4j.dreamjob.repository;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
@@ -13,13 +15,14 @@ public class Sql2oUserRepository implements UserRepository {
 
     private final Sql2o sql2o;
 
+    private final static Logger LOG = LoggerFactory.getLogger(Sql2oUserRepository.class.getName());
+
     public Sql2oUserRepository(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
 
     @Override
     public Optional<User> save(User user) {
-        Optional<User> out = null;
         try (var connection = sql2o.open()) {
             var sql = """
                       INSERT INTO users(email, name, password)
@@ -32,12 +35,12 @@ public class Sql2oUserRepository implements UserRepository {
             int id = query.executeUpdate().getKey(Integer.class);
             if (connection.getResult() > 0) {
                 user.setId(id);
-                out = Optional.of(user);
+                return Optional.of(user);
             }
         } catch (Sql2oException e) {
-            out = Optional.empty();
+            LOG.error("Failed to insert user into table.", e);
         }
-        return out;
+        return Optional.empty();
     }
 
     @Override
