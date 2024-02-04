@@ -38,7 +38,7 @@ public class Sql2oUserRepository implements UserRepository {
                 return Optional.of(user);
             }
         } catch (Sql2oException e) {
-            LOG.error("Failed to insert user into table.", e);
+            LOG.error("Failed to insert user into table", e);
         }
         return Optional.empty();
     }
