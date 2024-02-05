@@ -33,10 +33,8 @@ public class Sql2oUserRepository implements UserRepository {
                     .addParameter("name", user.getName())
                     .addParameter("password", user.getPassword());
             int id = query.executeUpdate().getKey(Integer.class);
-            if (connection.getResult() > 0) {
-                user.setId(id);
-                return Optional.of(user);
-            }
+            user.setId(id);
+            return Optional.of(user);
         } catch (Sql2oException e) {
             LOG.error("Failed to insert user into table", e);
         }
